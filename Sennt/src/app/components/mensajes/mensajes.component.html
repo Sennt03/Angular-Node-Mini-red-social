@@ -1,0 +1,148 @@
+<minav></minav>
+<div class="container">
+    <h3 class="title-mensajes">Mensajes</h3>
+    <hr>
+    <div class="mensajes" *ngIf="usuarios">
+        <div class="enviar-mensaje">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title title-form-mensajes">Enviar mensaje</h3>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="valid" style="color: #da1111; margin: -10px 0 10px 0;">
+                        {{valid_publi}}
+                    </div>
+                    <div>
+                        <select class="form-select select-mensajes" aria-label="Default select example" [(ngModel)]="mensaje.para">
+                            <option selected value="">Para: </option>
+                            <option value="{{userOption.name}}" *ngFor="let userOption of usuarios">{{userOption.name}}</option>
+                        </select>
+                        <input type="text" class="form-control select-mensajes" placeholder="Mensaje" [(ngModel)]="mensaje.mensaje">
+                        <input class="form-control" id="subImgMensaje" type="file" id="formFile" (change)="imgPre($event)">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input class="btn btn-primary btn-submit-mensajes" type="submit" value="Enviar" (click)="enviar()">
+                </div>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div class="grid-mis-mensajes">
+            <h3 class="margin-mis-mensajes">Mis mensajes</h3>
+            <hr>
+            <ul class="nav nav-pills mb-3 tab-mensajes" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Recibidos</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Enviados</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div *ngIf="recibidos" class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <div *ngIf="NoRecibidos" class="noPubli">
+                    No tienes mensajes
+                  </div>
+                        <div class="card mismensajes" *ngFor="let mensaje of recibidos">
+                            <div class="card-header">
+                                De: 
+                                <img class="img-user-mensajes" src="{{mensaje.imgDe}}" alt="Imagen del usuario">
+                                {{mensaje.de}}
+                            </div>
+                            <div class="card-body">
+                                {{mensaje.mensaje}}
+                            </div>
+                            <div class="card-footer" *ngIf="mensaje.image">
+                                <img class="img-recibida-mensajes" src="{{mensaje.image}}" alt="imagen enviada">
+                            </div>
+                        </div>
+                </div>
+                <div *ngIf="enviados" class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                  <div *ngIf="NoEnviados" class="noPubli">
+                    No haz enviado mensajes
+                  </div>  
+                  <div class="card mismensajes" *ngFor="let mensaje of enviados">
+                        <div class="card-header">
+                            Para:
+                            <img class="img-user-mensajes" src="{{mensaje.imgPara}}" alt="Imagen del usuario">
+                            {{mensaje.para}}
+                        </div>
+                        <div class="card-body">
+                            {{mensaje.mensaje}}
+                        </div>
+                        <img *ngIf="mensaje.image" class="img-recibida-mensajes" src="{{mensaje.image}}" alt="imagen enviada">
+                        <div class="card-footer">
+                            <!-- Button trigger modal -->
+<button style="margin-right: 5px;" (click)="getMensajeId(mensaje._id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarMensajeModal">
+    Eliminar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="borrarMensajeModal" tabindex="-1" aria-labelledby="borrarMensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="borrarMensajeModalLabel">Eliminar mensaje</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="valid" style="color: #da1111;">
+                {{valid_publi}}
+            </div>
+            El mensaje se eliminara para todos ¿Deseas eliminarlo?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="borrar()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+<button (click)="getMensajeEdit(mensaje._id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarMensajeModal">
+    Editar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="editarMensajeModal" tabindex="-1" aria-labelledby="editarMensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarMensajeModalLabel">Editar mensaje</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div style="color: #de1515; margin: 5px 0 10px 0;" *ngIf="valid">
+                {{valid_publi}}
+             </div>
+              <div class="form-edit" *ngIf="editMensaje">
+      
+                <img *ngIf="editMensaje.image !== ''" class="img-edit" src="{{editMensaje.image}}" alt="imagen">
+        
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <input type="text" name="mensaje" class="form-control" [(ngModel)]="editMensaje.mensaje">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="editar()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

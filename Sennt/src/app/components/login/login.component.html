@@ -1,0 +1,36 @@
+<div class="contenedor">
+    <div class="bienvenido">
+        <h3>Bienvenido a</h3>
+        <h1>Sennt.io</h1>
+        <p>Donde tu mundo es internet</p>
+   </div>
+   <div class="register">
+    <div class="row register">
+        <div class="col-md-4 mx-auto formLoginRegister">
+            <div class="card">
+                <div class="card-header">
+                    Iniciar sesion
+                </div>
+                <div class="incorrect" *ngIf="incorrect">
+                    {{incorrect}}
+                </div>
+                <div class="card-body">
+                    <form #loginForm="ngForm" (ngSubmit)="login()">
+                        <div class="form-group mb-3">
+                            <input [(ngModel)]="user.email" type="email" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input [(ngModel)]="user.password" type="password"  name="password" class="form-control" placeholder="Password" required>
+                        </div>
+                        <button id="btn-login" type="submit" class="btn-form btn btn-primary btn-block d-block" style="width: 100%;">
+                            Iniciar sesion
+                        </button>
+                        <a [routerLink]="['/register']">¿No tienes cuenta? Registrate aqui</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   </div>
+</div>

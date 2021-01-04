@@ -1,0 +1,408 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bienvenido{
+    width: 100%;
+    font-family: helvetica;
+    text-align: center;
+    width: 100%;
+    height: 25vh;
+    margin-top: 30%;
+}
+
+.register{
+    text-align: center;
+    background: #abe4ff;
+    height: 70vh;
+    padding: 20px
+}
+
+.btn-form{
+    margin-bottom: 15px;
+}
+
+.incorrect{
+    margin-top: 10px;
+    color: #61070b;
+}
+
+/* PERFIL */
+
+.perfil{
+    width: 100%;
+    height: 170px;
+}
+
+.raya-roja{
+    width: 100%;
+    height: 60px;
+    background: #bdc3c7;
+    text-align: center;
+    line-height: 60px;
+    font-size: 22px;
+    font-family: Helvetica;
+}
+
+.div-img-perfil{
+    width: 30%;
+    height: 100px;
+    position: relative;
+    top: -75px;
+    left: 30px;
+}
+
+.div-img-perfil img{
+    width: 100%;
+    border-radius: 100%;
+    height: 90%;
+}
+
+.mi-perfil{
+    width: 40%;
+    margin-left: auto;
+    margin-top: 14px;
+}
+
+.mi-perfil p{
+    margin-bottom: 0;
+}
+
+.btsn-mispubli{
+    margin: 0 5px;
+    padding: 5px 20px
+}
+
+.noPubli{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 28px;
+    font-family: sans-serif;
+}
+
+/* CONFIGURACION */
+
+#img-confi{
+    width: 70%;
+    height: 70%;
+    margin: 15px 25px;
+    border-radius: 60%;
+}
+
+#form-confi{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.btns-confi{
+    grid-column: 2/3;
+    margin-left: auto;
+}
+
+.btns-confi input{
+    margin: 1px;
+    padding: 8px;
+}
+
+.div-guardadoCorrectamente{
+    background: green;
+    color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-eliminar-cuenta{
+    margin: 20px 0;
+}
+
+/* addPublicaciones */
+
+.btns-publi{
+    width: 100%;
+}
+
+.btn-add-publication{
+    margin: 15px 0;
+    background: #29c0c7;
+    border-color: #29c0c7;
+}
+
+/* PUBLICACIONES */
+
+#name-publi{
+    font-family: cursive;
+    font-size: 18px;
+}
+
+#body-publi{
+    font-family: helvetica;
+}
+
+.publi{
+    margin-top: 15px;
+}
+
+.img-publi{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.grid-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
+}
+
+.img-publicacion{
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.btns-edit-publi{
+    margin: 5px 5px 5px 0;
+}
+
+.img-edit{
+    width: 100%;
+    height: 300px;
+    margin: 15px 0;
+}
+
+.input-edit{
+    margin: 15px 0;
+}
+
+
+/* USUARIOS */
+
+.usuarios-title{
+    margin-top: 10px;
+    font-family: helvetica;
+}
+
+.usuarios-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    margin: 10px;
+}
+
+.card-usuarios{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.img-usuarios{
+    height: 280px;
+}
+
+
+/* MENSAJES */
+
+.title-mensajes{
+    margin-top: 15px;
+}
+
+.title-form-mensajes{
+    font-family: helvetica;
+}
+
+.select-mensajes{
+    margin-bottom: 15px;
+}
+
+.btn-submit-mensajes{
+    width: 100%;
+}
+
+.img-user-mensajes{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.margin-mis-mensajes{
+    margin-top: 20px;
+}
+
+.mismensajes{
+    margin-bottom: 20px;
+}
+
+.tab-mensajes{
+    margin-top: 20px;
+}
+
+.enviar-mensaje{
+    border: none;
+}
+
+.img-recibida-mensajes{
+    width: 90%;
+    height: 230px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* RESPONSIVE */
+
+@media(min-width: 576px){
+    .bienvenido{
+        margin-top: 10%;
+    }
+    .div-img-perfil img{
+        height: 120%;
+    }
+
+    .perfil{
+        margin-bottom: 20px;
+    }
+}
+
+@media(min-width: 768px){
+    .bienvenido{
+        height: 32vh;
+    }
+    .div-img-perfil img{
+        height: 140%;
+    }
+    .div-img-perfil{
+        left: 75px;
+    }
+
+    .perfil{
+        margin-bottom: 40px;
+    }
+
+    .formLoginRegister{
+        width: 60%;
+    }
+
+    .usuarios-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .img-usuarios{
+        height: 220px;
+    }
+
+    .btn-eliminar-cuenta{
+        margin: 0 0 0 40px;
+    }
+
+    .img-publi {
+        height: 50px;
+        width: 50px;
+    }
+
+    .mensajes{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .grid-mis-mensajes{
+        grid-row: 1;
+    }
+
+    .img-recibida-mensajes{
+        width: 80%;
+        height: 220px;
+    }
+
+}
+
+@media(min-width: 992px){
+    .div-img-perfil img{
+        width: 90%;
+        height: 160%;
+    }
+
+    .div-img-perfil{
+        left: 100px;
+    }
+
+    .perfil{
+        margin-bottom: 80px;
+    }
+}
+
+@media(min-width: 1024px){
+    .div-img-perfil {
+        width: 26%;
+        left: 120px;
+    }
+
+    .perfil {
+        margin-bottom: 70px;
+    }
+
+    .img-div-confi{
+        height: 300px;
+        width: 400px;
+        text-align: center;
+    }
+
+    .img-edit {
+        height: 200px;
+    }
+
+    .img-publi {
+        height: 50px;
+    }
+
+    .publi {
+        margin: 30px;
+        border: 1px solid #e4e1e1;
+    }
+
+    .img-publicacion {
+        width: 80%;
+        height: 330px;
+        margin: 0 50%;
+        margin: 0 50%;
+        transform: translateX(-50%);
+        margin-bottom: 20px;
+    }
+
+    .btn-eliminar-cuenta{
+        margin: 0 0 0 130px;
+    }
+
+    .img-recibida-mensajes{
+        width: 70%;
+        height: 230px;
+    }
+}
+
+@media(min-width: 1366px){
+    .div-img-perfil {
+        width: 23%;
+        left: 200px;
+    }
+
+    .img-publicacion{
+        height: 370px;
+    }
+
+    .img-edit {
+        height: 250px;
+    }
+
+    .img-usuarios {
+        height: 270px;
+    }
+
+    .btn-eliminar-cuenta{
+        margin: 0 0 0 240px;
+    }
+
+    .img-recibida-mensajes{
+        width: 70%;
+        height: 250px;
+    }
+}

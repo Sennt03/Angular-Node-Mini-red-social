@@ -1,0 +1,14 @@
+<minav></minav>
+<div class="container">
+    <h3 class="usuarios-title">Usuarios</h3>
+    <hr>
+    <div class="usuarios-grid" *ngIf="usuarios">
+        <div class="card card-usuarios" *ngFor="let usuario of usuarios">
+            <img src="{{usuario.image}}" class="card-img-top img-usuarios" alt="imagen de perfil del usuario">
+            <div class="card-body">
+              <h5 class="card-title">{{usuario.name}}</h5>
+              <a [routerLink]="['/perfil', usuario.name]" class="btn btn-primary">Ver perfil</a>
+            </div>
+        </div>
+    </div>
+</div>

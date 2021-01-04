@@ -1,0 +1,48 @@
+<div class="contenedor">
+    <div class="bienvenido">
+        <h3>Bienvenido a</h3>
+        <h1>Sennt.io</h1>
+        <p>Donde tu mundo es internet</p>
+   </div>
+   <div class="register">
+    <div class="row register">
+        <div class="col-md-4 mx-auto formLoginRegister">
+            <div class="card">
+                <div class="card-header">
+                    Registrate ahora
+                </div>
+                <div *ngIf="valid == 'nameFalse'">
+                    El nombre no es valido
+                </div>
+                <div *ngIf="valid == 'correoFalse'">
+                    {{err.error.text}}
+                </div>
+                <div *ngIf="valid == 'incompleto'">
+                    Llene todos los campos porfavor
+                </div>
+                <div *ngIf="valid == 'emailInco'">
+                    Introdusca una direccion de correo valida
+                </div>
+                <div class="card-body">
+                    <form #RegisterForm="ngForm" (ngSubmit)="signup()">
+                        <div class="form-group mb-3">
+                            <input type="name"  name="name" class="form-control" placeholder="Nombre" [(ngModel)]="user.name" required autofocus>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Email" [(ngModel)]="user.email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password"  name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required>
+                        </div>
+                        <button id="btn-register" type="submit" class="btn-form btn btn-primary btn-block d-block" style="width: 100%;">
+                            Registrarme
+                        </button>
+                        <a [routerLink]="['/login']">¿Ya tienes cuenta? Inicia sesion aqui</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+   </div>
+</div>

@@ -1,0 +1,34 @@
+<minav></minav>
+<div class="perfil" *ngIf="user">
+    <div class="raya-roja">
+        {{user.name}}
+    </div>
+    <div class="mi-perfil">
+        <p>Puedes enviarle un mensaje</p>
+       <a [routerLink]="['/mensajes']">aqui</a>
+    </div>
+    <div class="div-img-perfil">
+        <img src="{{user.image}}" alt="Imagen de perfil">
+    </div>
+</div>
+<div class="container">
+    <h4>Publicaciones</h4>
+    <hr>
+    <div *ngIf="NoPubli" class="noPubli">
+        No tiene publicaciones
+    </div>
+    <div *ngIf="publicaciones">
+        <div class="card" class="publi" *ngFor="let publicacion of publicaciones">
+            <div class="card-header" id="name-publi">
+                <img src="{{publicacion.img}}" class="img-publi" alt="imagen del usuario">
+                {{publicacion.user}}
+            </div>  
+            <div class="card-body" id="body-publi">
+                <p>{{publicacion.publicacion}}</p>
+            </div>
+            <div class="card-footer">
+            <img class="img-publicacion" src="{{publicacion.imgPubli}}" alt="Imagen de publicacion" *ngIf="publicacion.imgPubli">  
+            </div>
+        </div>
+      </div>
+</div>

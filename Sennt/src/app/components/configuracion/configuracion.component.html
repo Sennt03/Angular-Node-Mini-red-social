@@ -1,0 +1,85 @@
+<minav></minav>
+<div class="container">
+    <form id="form-confi" *ngIf="Userimg">
+        <div class="img-div-confi">
+            <img id="img-confi" src="{{Userimg.image}}" alt="Imagen de perfil">
+        </div>
+        <div>
+                <div style="color: red;" *ngIf="valid == 'Cargando'">
+                    Cargando...
+                </div>
+                <div style="color: red;" *ngIf="valid == 'nameFalse'">
+                    El nombre no es valido
+                </div>
+                <div style="color: red;" *ngIf="valid == 'correoFalse'">
+                    {{err.error.text}}
+                </div>
+                <div style="color: red;" *ngIf="valid == 'algunCampo'">
+                    LLene algun campo porfavor
+                </div>
+                <div style="color: red;" *ngIf="valid == 'emailInco'">
+                    Introdusca una direccion de correo valida
+                </div>
+                <div class="div-guardadoCorrectamente" *ngIf="valid == 'confirm'">
+                    Cambios guardados correctamente
+                </div>
+            <label class="form-label" for="name">Nombre de usuario</label>
+            <input class="form-control" type="text" name="name" [(ngModel)]="user.name">
+            <label class="form-label" for="email">Correo</label>
+            <input class="form-control" type="email" name="email" [(ngModel)]="user.email"><br>
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="file" id="formFile" (change)="fileChangeEvent($event)">
+          </div>
+        <div class="btns-confi">
+            <input type="submit" value="Cancelar" class="btn btn-primary" (click)="cancelar()">
+            <input id="btn-guardar" type="submit" value="Guardar" class="btn btn-primary" (click)="guardar()">
+        </div>
+    </form>
+
+    <hr>
+
+    <div class="card" *ngIf="Userimg">
+        <div class="card-header">
+            <h3 class="card-t">Tus Datos</h3>
+        </div>
+        <div class="card-body">
+            <div class="grid-2">
+                <div>
+                    <label class="form-label">Nombre:</label> <br>
+                    <label class="form-label">{{Userimg.name}}</label>
+                </div>
+                <div>
+                    <label class="form-label">Correo:</label> <br>
+                    <label class="form-label">{{Userimg.email}}</label>
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger btn-eliminar-cuenta" data-bs-toggle="modal" data-bs-target="#eliminarCuentaModal">
+    Eliminar cuenta
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="eliminarCuentaModal" tabindex="-1" aria-labelledby="eliminarCuentaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eliminarCuentaModalLabel">Eliminar cuenta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div style="color: red;" *ngIf="valid == 'EliminandoCuenta'">
+                Eliminando cuenta...
+            </div>
+          ¿Estas seguro de eliminar la cuenta?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" (click)="eliminarCuenta()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
