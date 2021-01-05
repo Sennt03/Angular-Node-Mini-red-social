@@ -1,5 +1,5 @@
 # Sennt.io
-Mini RedSocial con MEAN Stack, responsive.
+Mini RedSocial con MEAN Stack ( MongoDb, Express, Angular, NodeJs), responsive.
 
 Tiene:
 * ( Proteccion de rutas, validación de correo, encriptación de password ) 
