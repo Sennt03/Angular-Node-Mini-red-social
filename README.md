@@ -1,5 +1,5 @@
 # Sennt.io
-### Mini RedSocial con MEAN Stack ( MongoDb, Express, Angular, NodeJs), responsive.
+Mini RedSocial con MEAN Stack ( MongoDb, Express, Angular, NodeJs), responsive.
 
 #### Tiene:
 * ( Proteccion de rutas, validación de correo, encriptación de password ) 
@@ -9,4 +9,4 @@
 * Envio de mensajes a tiempo real
 * Editar y eliminar mensajes
 
-[sennt.io](http://sennt-io.herokuapp.com)
+Link: [sennt.io](http://sennt-io.herokuapp.com)
