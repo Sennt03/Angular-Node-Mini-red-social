@@ -9,4 +9,4 @@ Mini RedSocial con MEAN Stack ( MongoDb, Express, Angular, NodeJs), responsive.
 * Envio de mensajes a tiempo real
 * Editar y eliminar mensajes
 
-Link: [sennt.io](http://sennt-io.herokuapp.com)
+Link: [sennt.io](https://sennt-io.herokuapp.com)
