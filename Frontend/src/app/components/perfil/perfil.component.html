@@ -1,0 +1,132 @@
+<minav></minav>
+<div class="perfil" *ngIf="user">
+    <div class="raya-roja">
+        {{user.name}}
+    </div>
+    <div class="mi-perfil">
+       <p>Puedes editar tus datos</p>
+       <a [routerLink]="['/configuracion']">aqui</a>
+    </div>
+    <div class="div-img-perfil">
+        <img src="{{user.image}}" alt="Imagen de perfil">
+    </div>
+</div>
+<div class="container">
+    <h4>Mis publicaciones</h4>
+    <hr>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-add-publication" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Añadir publicacion
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva publicacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="form-publi">
+               <div>
+                   <h3>Publicacion</h3>
+                   <div style="color: #de1515; margin: 5px 0 10px 0;" *ngIf="valid">
+                      {{valid_publi}}
+                   </div>
+                   <input class="form-control" type="text" name="publicacion" [(ngModel)]="addpublicacion.publicacion"><br>
+               </div>
+               <div class="mb-3">
+                  <label class="form-label">Subir imagen</label>
+                <input class="form-control" type="file" id="formFile" (change)="imgPre($event)">
+                </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btns-publi" (click)="publicar()">Publicar</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <div *ngIf="NoPubli" class="noPubli">
+        No tienes publicaciones
+    </div>
+    <div *ngIf="mispublicaciones">
+      <div class="card" *ngFor="let publicacion of mispublicaciones">
+        <div class="card-header" id="name-publi">
+          <img src="{{publicacion.img}}" class="img-publi" alt="imagen del usuario">
+             {{publicacion.user}}
+       </div>  
+       <div class="card-body" id="body-publi">
+          <p>{{publicacion.publicacion}}</p>
+       </div>
+       <div class="card-footer">
+        <img class="img-publicacion" src="{{publicacion.imgPubli}}" alt="Imagen de publicacion" *ngIf="publicacion.imgPubli">
+        <!-- Button trigger modal -->
+<button (click)="getPubliId(publicacion._id)" type="button" class="btns-edit-publi btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrarModal">
+Borrar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="borrarModal" tabindex="-1" aria-labelledby="borrarModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="borrarModalLabel">Borrar publicacion</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetPubliId()"></button>
+  </div>
+  <div class="modal-body">
+    <div style="color: #de1515; margin: 5px 0 10px 0;" *ngIf="valid">
+      {{valid_publi}}
+   </div>
+    ¿Seguro quires eliminar esta publicacion?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetPubliId()">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="borrar()">Eliminar</button>
+  </div>
+</div>
+</div>
+</div>
+    <!-- Button trigger modal -->
+<button (click)="getPubliEdit(publicacion._id)" type="button" class="btns-edit-publi btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+Editar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="editModalLabel">Editar publicacion</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetEdit()"></button>
+  </div>
+  <div class="modal-body">
+    <div style="color: #de1515; margin: 5px 0 10px 0;" *ngIf="valid">
+      {{valid_publi}}
+   </div>
+    <div class="form-edit" *ngIf="editPublicacion !== null">
+
+      <img *ngIf="editPublicacion.imgPubli !== ''" class="img-edit" src="{{editPublicacion.imgPubli}}" alt="imagen">
+
+      <div class="card">
+          <div class="card-body">
+              <form>
+                  <label for="publicacion" class="form-label">Publicacion</label>
+                  <input type="text" name="publicacion" class="form-control" [(ngModel)]="editPublicacion.publicacion">
+              </form>
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetEdit()">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="editar()">Guardar</button>
+  </div>
+</div>
+</div>
+</div>
+       </div>
+</div>
+    </div>
+</div>

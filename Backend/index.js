@@ -2,8 +2,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
 require('./database.js')
 
 // Archivo de rutas
@@ -18,6 +19,13 @@ app.use(cors())
 
 // Cargar rutas
 app.use('/api', user_route)
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
 
 // Servidor
 app.listen(port, () => {
