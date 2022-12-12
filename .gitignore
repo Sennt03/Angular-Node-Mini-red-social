@@ -1,3 +1,53 @@
+# BACKEND
 /Diseños
-/Sennt/node_modules
+/Frontend/node_modules
 /Backend/node_modules
+/Backend/.env
+
+# FRONTEND
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/Frontend/dist
+/Frontend/tmp
+/Frontend/out-tsc
+# Only exists if Bazel was run
+/Frontend/bazel-out
+
+# dependencies
+/Frontend/node_modules
+
+# profiling files
+/Frontend/chrome-profiler-events*.json
+/Frontend/speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+/Frontend/.project
+/Frontend/.classpath
+/Frontend/.c9/
+/Frontend/*.launch
+/Frontend/.settings/
+/Frontend/*.sublime-workspace
+
+# IDE - VSCode
+/Frontend/.vscode/*
+/Frontend/!.vscode/settings.json
+/Frontend/!.vscode/tasks.json
+/Frontend/!.vscode/launch.json
+/Frontend/!.vscode/extensions.json
+/Frontend/.history/*
+
+# misc
+/Frontend/.sass-cache
+/Frontend/connect.lock
+/Frontend/coverage
+/Frontend/libpeerconnection.log
+/Frontend/npm-debug.log
+/Frontend/yarn-error.log
+/Frontend/testem.log
+/Frontend/typings
+
+# System Files
+/Frontend/.DS_Store
+/Frontend/Thumbs.db
