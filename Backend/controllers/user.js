@@ -66,7 +66,6 @@ var controller = {
                             if(err) return res.status(500).send('Error')
                             if(!user) return res.status(404).send('El usuario no existe')
                             
-                            const { name, email } = user
                             userUpdate = {
                                 name,
                                 email,
