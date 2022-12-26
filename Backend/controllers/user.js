@@ -5,25 +5,24 @@ var controller = {
 
     signup: function(req, res){
         let newUser = new User()
-        let params = req.body
-        let password = params.password
-        let email = params.email
-        let name = params.name
+        const { name, email, password } = req.body
 
-        newUser.name = params.name
-        newUser.email = params.email
-        newUser.password = newUser.encryptPassword(password)
-        newUser.image = 'https://res.cloudinary.com/sennt03/image/upload/v1609347260/Sennt.io/por-defecto_xdppxs.jpg'       
+        newUser = {
+            name,
+            email,
+            password: newUser.encryptPassword(password),
+            image: 'https://res.cloudinary.com/sennt03/image/upload/v1609347260/Sennt.io/por-defecto_xdppxs.jpg'
+        }
 
-        User.findOne({email: email}, (err, user) => {
-            if(user == null){
-                User.findOne({name: name}, (err, user) => {
-                    if(user == null){
+        User.findOne({email }, (err, user) => {
+            if(!user){
+                User.findOne({ name }, (err, user) => {
+                    if(!user){
                         newUser.save((err, user) => {
                             if(err) return res.status(500).send({message: 'Error al registrar usuario'})
                             if(!user) return res.status(404).send({message: 'No se ha registrado el usuario'})
                             const token = jwt.sign({_id: user._id}, 'Sennt.io')
-                            return res.status(200).send({token: token, user: user})
+                            return res.status(200).send({token, user})
                         })
                     }else{
                         return res.send('El nombre de usuario ya esta en uso')
@@ -40,49 +39,43 @@ var controller = {
     
 
     signin: function(req, res){
-        let newUser = new User()
-        let params = req.body
-        let email = params.email
-        let password = params.password
+        const newUser = new User()
+        const { email, password } = req.body;
 
         User.findOne({email: email}, (err, user) => {
             if(err) return res.status(500).send({message: 'Error al iniciar sesion'})
             if(!user) return res.status(404).send('El correo no existe')
             if(!user.validPassword(password)) return res.status('404').send('Contraseña incorrecta')
             const token = jwt.sign({_id: user._id}, 'Sennt.io')
-            return res.status(200).send({token: token, user: user})
+            return res.status(200).send({token, user})
         })
     },
 
     editUser: function(req, res){
-        let userId = req.params.id
-        let params = req.body
-        let email = params.email
-        let name = params.name
-        let img = params.image
+        const userId = req.params.id
+        
+        const { email, name } = req.body
+        const img = req.body.image
+
         let userUpdate = {}
         User.findOne({email: email}, (err, user) => {
-            if(user == null){
-                User.findOne({name: name}, (err, user) => {
-                    if(user == null){
+            if(!user){
+                User.findOne({ name }, (err, user) => {
+                    if(!user){
                         User.findById(userId, (err, user) => {
                             if(err) return res.status(500).send('Error')
                             if(!user) return res.status(404).send('El usuario no existe')
-                            userUpdate = user
-                            if(name !== ''){
-                            userUpdate.name = name
-                            }
-                            if(email !== ''){
-                                userUpdate.email = email
-                            }
-                            if(img !== ''){
-                                userUpdate.image = img
+                            
+                            userUpdate = {
+                                name,
+                                email,
+                                image: img
                             }
                             User.findByIdAndUpdate(userId, userUpdate, {new: true}, (err, user) => {
-                            if(err) return res.status(500).send('Error')
-                            if(!user) return res.status(404).send('Usuario no encontrado')
-                            return res.status(200).send(user)
-                        })
+                                if(err) return res.status(500).send('Error')
+                                if(!user) return res.status(404).send('Usuario no encontrado')
+                                return res.status(200).send(user)
+                            })
                         })
                     }else{
                         return res.send('El nombre de usuario ya esta en uso')
@@ -96,7 +89,7 @@ var controller = {
     },
 
     deleteUser: function(req, res){
-        let userId = req.params.id
+        const userId = req.params.id
         User.findByIdAndRemove(userId, (err, user) => {
             if(err) return res.status(500).send('Error')
             if(!user) return res.status(404).send('No existe el usuario')
@@ -116,7 +109,7 @@ var controller = {
     },
 
     getUser: function(req, res){
-        let userId = req.params.id
+        const userId = req.params.id
         User.findById(userId, (err, user) => {
             if(err) return res.status(500).send('Ha ocurrido un error')
             if(!user) return res.status(404).send('No existe el usuario')
@@ -133,8 +126,8 @@ var controller = {
     },
 
     getUserByName: function(req, res){
-        let name = req.params.name
-        User.findOne({name: name}, (err, user) => {
+        const { name } = req.params;
+        User.findOne({ name }, (err, user) => {
             if(err) return res.status(500).send('Error')
             if(!user) return res.status(404).send('El usuario no existe')
             return res.status(200).send(user)
