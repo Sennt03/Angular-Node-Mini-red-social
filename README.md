@@ -1,7 +1,7 @@
 # Sennt.io
 Mini RedSocial con MEAN Stack ( MongoDB, Express, Angular, NodeJs).
 
-Link: https://social.david-ruiz.online{:target="_blank"}
+Link: (https://social.david-ruiz.online){:target="_blank"}
 
 #### Incluye:
 * ( Proteccion de rutas, validación de correo, encriptación de password ) 
